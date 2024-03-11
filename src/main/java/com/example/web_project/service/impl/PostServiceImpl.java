@@ -65,6 +65,8 @@ public class PostServiceImpl implements PostService{
         entity.setPostContent(dto.getPostContent());
         entity.setPostWriter(dto.getPostWriter());
         entity.setPostDate(dto.getPostDate());
+
+        postDao.insertPost(entity);
     }
 
     @Override
@@ -75,6 +77,8 @@ public class PostServiceImpl implements PostService{
         entity.setPostContent(dto.getPostContent());
         entity.setPostWriter(dto.getPostWriter());
         entity.setPostDate(dto.getPostDate());
+
+        postDao.updatePost(entity);
     }
     
 }
