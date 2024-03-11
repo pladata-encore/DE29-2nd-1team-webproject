@@ -1,0 +1,33 @@
+
+server:
+    servlet:
+        # 한글깨짐 처리 
+        encoding:
+            force-response: true
+
+spring:
+    output:
+        ansi:
+            enabled: always
+    # mustache 설정
+    mustache:
+        prefix: classpath:templates/
+        check-template-location: true
+        suffix: .html # .html파일을 모두 mustache으로 인식
+        servlet:
+            cache: false
+    # 데이터베이스 설정 
+    datasource:
+        url: jdbc:mysql://127.0.0.1:3306/examplesdb?userSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul
+        username: urstory
+        password: u1234
+        driver-class-name: com.mysql.cj.jdbc.Driver
+    # jpa 설정 
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                show_sql: true
+                format_sql: true
+                
