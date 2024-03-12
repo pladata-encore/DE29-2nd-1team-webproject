@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,9 +28,9 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public List<PostDto> getAllPost() {
+    public List<PostDto> getAllPost(Pageable pageable) {
         // TODO Auto-generated method stub
-        List<PostEntity> postList = postDao.getAllPost();
+        List<PostEntity> postList = postDao.getAllPost(pageable);
         List<PostDto> dtoList = new ArrayList<>();
         for(PostEntity post : postList) {
             PostDto dto = new PostDto();

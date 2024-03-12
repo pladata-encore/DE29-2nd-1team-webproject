@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.web_project.model.DAO.PostDao;
 import com.example.web_project.model.DTO.PostDto;
 import com.example.web_project.service.PostService;
 import com.example.web_project.service.impl.PostServiceImpl;
@@ -81,9 +84,17 @@ public class WebController {
     }
 
     @GetMapping("/list")
-    public String boardList(Model model) {
-        model.addAttribute("lt", postService.getAllPost());
-        return "/bootstrapPost/boardList";
+    public String boardList(Model model, @PageableDefault(page = 0,size= 5, sort="postDate") Pageable pageable) {
+        model.addAttribute("lt", postService.getAllPost(pageable));
+        Page<PostDao> list = postService.getAllPost(pageable);
+
+        int nowPage = list.getPageable().getPageNumber() +1;
+        int startPage = Math.max(nowPage-4,1);
+        int endPage = Math.min(nowPage+5,list.getTotalPages());
+        model.addAttribute("nowPage", nowPage);
+        model.addAttribute("startPage", startPage);
+        model.addAt
+        return "/bootstrapMain/index";
     }
 
     
