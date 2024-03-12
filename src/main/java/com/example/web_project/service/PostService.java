@@ -21,5 +21,7 @@ public interface PostService {
     // delete
     public void deletePost(Long postId);
 
+    public void viewPost(PostDto dto);
+
     
 }

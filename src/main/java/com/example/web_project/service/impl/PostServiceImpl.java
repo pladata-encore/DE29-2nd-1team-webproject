@@ -38,6 +38,8 @@ public class PostServiceImpl implements PostService{
             dto.setPostContent(post.getPostContent());
             dto.setPostWriter(post.getPostWriter());
             dto.setPostDate(post.getPostDate());
+            dto.setPostTitle(post.getPostTitle());
+            dto.setPostFilePath(post.getPostFilePath());
 
             dtoList.add(dto);
         }
@@ -45,9 +47,9 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public PostDto getByPostId(Long postId) {
+    public PostDto getByPostId(Long i) {
         // TODO Auto-generated method stub
-        PostEntity post = postDao.getByPostId(postId);
+        PostEntity post = postDao.getByPostId(i);
         PostDto dto = new PostDto();
 
         dto.setPostId(post.getPostId());
@@ -55,6 +57,8 @@ public class PostServiceImpl implements PostService{
         dto.setPostContent(post.getPostContent());
         dto.setPostWriter(post.getPostWriter());
         dto.setPostDate(post.getPostDate());
+        dto.setPostFileName(post.getPostFileName());
+        dto.setPostFilePath(post.getPostFilePath());
 
         return dto;
     }
@@ -105,6 +109,13 @@ public class PostServiceImpl implements PostService{
         entity.setPostDate(dto.getPostDate());
 
         postDao.updatePost(entity);
+    }
+
+    @Override
+    public void viewPost(PostDto dto) {
+        // TODO Auto-generated method stub
+        PostEntity entity = postDao.getByPostId(dto.getPostId());
+        System.err.println(entity.toString());
     }
     
 

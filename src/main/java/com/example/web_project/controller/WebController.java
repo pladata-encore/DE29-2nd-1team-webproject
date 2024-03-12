@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.web_project.model.DTO.PostDto;
 import com.example.web_project.service.PostService;
+import com.example.web_project.service.impl.PostServiceImpl;
 
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class WebController {
     
     @Autowired
-    private PostService postService;
+    private PostServiceImpl postService;
 
 
     @GetMapping("/index")
@@ -53,7 +54,40 @@ public class WebController {
 
     @GetMapping("/insertpost")
     public String insertPost() {
-        return "/bootstrapPost/write";
+        return "/bootstrapPost/writeform";
     }
+
+    @GetMapping("/login")
+    public String login(){
+        return "/bootstrapMain/login";
+    }
+
+    @GetMapping("/view")
+    public String view(Model model) {
+
+        
+        PostDto dto= postService.getByPostId((long) 102);
+
+        System.out.println(dto.toString());
+
+        model.addAttribute("postWriter",dto.getPostWriter());
+        model.addAttribute("postTitle",dto.getPostTitle());
+        model.addAttribute("postContent",dto.getPostContent());
+        model.addAttribute("postFilePath",dto.getPostFilePath());
+        
+        
+
+        return "/bootstrapPost/view";
+    }
+
+    @GetMapping("/list")
+    public String boardList(Model model) {
+        model.addAttribute("lt", postService.getAllPost());
+        return "/bootstrapPost/boardList";
+    }
+
+    
+
+
     
 }
