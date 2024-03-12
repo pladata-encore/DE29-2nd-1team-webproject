@@ -18,4 +18,10 @@ public interface UserService {
 
     // delete
     public void deleteUser(String userId);
+
+    // 로그인 성공 시 >> 로그인 유무 저장
+    public void updateIsLoginByName(String name, Boolean isLogin);
+
+    // 권한 적용
+    public void joinUserDto(UserDto dto);
 }
