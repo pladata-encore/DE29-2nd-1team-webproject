@@ -17,4 +17,8 @@ public class WebController {
     public String getPost() {
         return "/bootstrapPost/post";
     }
+    @GetMapping("/write")
+    public String getWrite() {
+        return "/bootstrapWrite/write";
+    }
 }
