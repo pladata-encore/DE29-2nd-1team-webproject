@@ -17,17 +17,17 @@
         <!-- 상단바 -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="#!">HooOk Board</a>
+                <a class="navbar-brand" href="#!">형록이와 아이들 게시판</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <!-- 회원가입 -->
-                        <li class="nav-item px-2 "><a class="nav-link" href="https://www.naver.com">SignUp</a></li>
+                        <li class="nav-item px-2 "><a class="nav-link" href="https://www.naver.com">회원가입</a></li>
                         <!-- 로그인(모달) -->
                         <button class="btn btn-primary rounded-pill px-2 mb-1 mb-lg-0" data-bs-toggle="modal" data-bs-target="#LogInModal">
                             <span class="d-flex align-items-center">
                                 <i class="bi-chat-text-fill me-2"></i>
-                                <span class="small">LogIn</span>
+                                <span class="small">로그인</span>
                             </span>
                         </button>
                     </ul>
@@ -38,7 +38,7 @@
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header bg-gradient-primary-to-secondary p-4">
-                            <h5 class="modal-title font-alt text-dark " id="LogInModalLabel">LogIn</h5>
+                            <h5 class="modal-title font-alt text-dark " id="LogInModalLabel">로그인</h5>
                             <button class="btn-close btn-close-dark" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body border-0 p-4">
@@ -63,25 +63,34 @@
                                     <label for="password">Password</label>
                                     <div class="invalid-feedback" data-sb-feedback="password:required">비밀번호를 입력해주세요</div>
                                 </div>
-                            <!-- 로그인 성공/실패 -->
-                                <!-- 로그인 성공시 보낼 메세지 -->
+                                <!-- 로그인 성공시-->
                                 <div class="d-none" id="submitSuccessMessage">
-                                    <div class="text-center mb-3"><div class="fw-bolder">로그인되었습니다</div>
+                                    <div class="text-center mb-3"><div class="fw-bolder"></div>
                                         <br />
-                                        <a href="post">Home</a>
+                                        <a href="post">여기 어떻게 하죠..</a>
                                     </div>
                                 </div>
-                                <!-- 로그인 성공시 보낼 메세지 -->
+                                <!-- 로그인 실패시 보낼 메세지 -->
                                 <div class="d-none" id="submitErrorMessage">
                                     <div class="text-center text-danger mb-3">아이디 혹은 비밀번호가 틀렸습니다</div>
                                 </div>
                                 <!-- Submit 활성/비활성 버튼 -->
-                                <div class="d-grid"><button class="btn btn-primary rounded-pill btn-lg disabled" id="submitButton" type="submit">Submit</button></div>
+                                <div class="d-grid"><button class="btn btn-primary rounded-pill btn-lg disabled" id="submitButton" type="submit">로그인</button></div>
+
+                                <!-- 회원가입 전환 -->
+                                <div class="modal-footer">
+                                    <div class="forgot login-footer">
+                                        <span>Looking to
+                                            <a href="signup">create an account</a>
+                                        ?</span>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
+            
         </nav>
         <!-- 메인 페이지 화면 -->
         <header class="py-5 bg-light border-bottom mb-5">
