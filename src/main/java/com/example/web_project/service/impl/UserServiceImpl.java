@@ -85,5 +85,30 @@ public class UserServiceImpl implements UserService{
         
         userDao.updateUser(entity);
     }
+
+    @Override
+    public UserDto loginuser(UserDto dto) {
+        // TODO Auto-generated method stub
+        UserEntity user = userDao.getByUserName(dto.getUserId());
+        UserDto dto2 = new UserDto();
+        dto2.setUserId(dto.getUserId());
+        dto2.setUserName(dto.getUserName());
+        dto2.setUserPw(dto.getUserPw());
+        dto2.setUserEmail(dto.getUserEmail());
+        dto2.setUserAddress(dto.getUserAddress());
+        dto2.setUserAge(dto.getUserAge());
+
+        if(user==null) {
+            return null;
+        }
+        else if (!dto2.getUserPw().equals(dto.getUserPw())) {
+            return dto;
+        }
+        
+        return dto2;
+        
+    }
+
+    
     
 }
