@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.web_project.model.DAO.UserDao;
@@ -16,6 +17,9 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public void deleteUser(String userId) {
@@ -111,7 +115,7 @@ public class UserServiceImpl implements UserService{
         // 비밀번호 암호화 적용
         String rawPwd = dto.getUserPw();
         String encodedPwd = bCryptPasswordEncoder.encode(rawPwd);
-        dto.setPwd(encodedPwd);
+        dto.setUserPw(encodedPwd);
 
         dto.setIsLogin(false);
 
