@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.web_project.model.DTO.PostDto;
-import com.example.web_project.model.DTO.UserDto;
-import com.example.web_project.service.UserService;
 import com.example.web_project.service.impl.PostServiceImpl;
 
 import jakarta.validation.Valid;
@@ -27,9 +25,6 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/v1/web")
 @Slf4j
 public class UserController {
-    
-    @Autowired
-    private UserService userService;
 
     @Autowired
     private PostServiceImpl postService;
