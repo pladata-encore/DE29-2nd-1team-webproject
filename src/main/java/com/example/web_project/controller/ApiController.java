@@ -33,8 +33,8 @@ public class ApiController {
     }
 
     @GetMapping("/getUser")
-    public String getUser(@Valid @RequestParam String userName) {
-        UserDto dto = userService.getByUserName(userName);
+    public String getUser(@Valid @RequestParam String userId) {
+        UserDto dto = userService.getUserByName(userId);
         return dto.toString();
     }
 

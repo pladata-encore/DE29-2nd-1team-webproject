@@ -22,66 +22,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <!-- 회원가입 -->
-                        <li class="nav-item px-2 "><a class="nav-link" href="https://www.naver.com">SignUp</a></li>
+                        <li class="nav-item px-2 "><a class="nav-link" href="/v1/web/registerPage">SignUp</a></li>
                         <!-- 로그인(모달) -->
-                        <button class="btn btn-primary rounded-pill px-2 mb-1 mb-lg-0" data-bs-toggle="modal" data-bs-target="#LogInModal">
-                            <span class="d-flex align-items-center">
-                                <i class="bi-chat-text-fill me-2"></i>
-                                <span class="small">LogIn</span>
-                            </span>
-                        </button>
+                        <li class="nav-item px-2 "><a class="nav-link" href="/v1/web/loginPage">Login</a></li>
                     </ul>
                 </div>
             </div>
             <!-- 상단바 로그인 모달(라이트박스, 사용자알림 등) -->
-            <div class="modal fade" id="LogInModal" tabindex="-1" aria-labelledby="LogInModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header bg-gradient-primary-to-secondary p-4">
-                            <h5 class="modal-title font-alt text-dark " id="LogInModalLabel">LogIn</h5>
-                            <button class="btn-close btn-close-dark" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body border-0 p-4">
-                            <!-- * * * * * * * * * * * * * * * -->
-                            <!-- * * SB Forms Contact Form * * -->
-                            <!-- * * * * * * * * * * * * * * * -->
-                            <!-- This form is pre-integrated with SB Forms. -->
-                            <!-- To make this form functional, sign up at -->
-                            <!-- https://startbootstrap.com/solution/contact-forms -->
-                            <!-- to get an API token! -->
-                            <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                                <!-- 이메일 입력 -->
-                                <div class="form-floating mb-3">
-                                    <input class="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="email" />
-                                    <label for="email">Email</label>
-                                    <!-- 유효성 검사 메세지 -->
-                                    <div class="invalid-feedback" data-sb-feedback="email:email">올바른 이메일을 입력해주세요</div>
-                                </div>
-                                <!-- 비밀번호 입력 -->
-                                <div class="form-floating mb-3">
-                                    <input class="form-control" id="password" type="password" placeholder="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" data-sb-validations="required" />
-                                    <label for="password">Password</label>
-                                    <div class="invalid-feedback" data-sb-feedback="password:required">비밀번호를 입력해주세요</div>
-                                </div>
-                            <!-- 로그인 성공/실패 -->
-                                <!-- 로그인 성공시 보낼 메세지 -->
-                                <div class="d-none" id="submitSuccessMessage">
-                                    <div class="text-center mb-3"><div class="fw-bolder">로그인되었습니다</div>
-                                        <br />
-                                        <a href="post">Home</a>
-                                    </div>
-                                </div>
-                                <!-- 로그인 성공시 보낼 메세지 -->
-                                <div class="d-none" id="submitErrorMessage">
-                                    <div class="text-center text-danger mb-3">아이디 혹은 비밀번호가 틀렸습니다</div>
-                                </div>
-                                <!-- Submit 활성/비활성 버튼 -->
-                                <div class="d-grid"><button class="btn btn-primary rounded-pill btn-lg disabled" id="submitButton" type="submit">Submit</button></div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
         </nav>
         <!-- 메인 페이지 화면 -->
         <header class="py-5 bg-light border-bottom mb-5">

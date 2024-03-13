@@ -1,6 +1,5 @@
 package com.example.web_project.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -51,6 +50,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain finteFilterChain(HttpSecurity http) throws Exception {
+        
         http.csrf(AbstractHttpConfigurer::disable);
 
         http
@@ -64,8 +64,8 @@ public class SecurityConfig {
                 .anyRequest().permitAll()
             )
             .formLogin(formLogin -> formLogin
-                .loginPage("/loginPage")
-                .loginProcessingUrl("/login")
+                .loginPage("/v1/web/loginPage")
+                .loginProcessingUrl("/v1/web/login")
                 .successHandler(loginAuthSuccessHandler1())
                 .failureHandler(loginAuthFailureHandler1())
                 .permitAll()

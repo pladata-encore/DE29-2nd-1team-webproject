@@ -16,9 +16,9 @@ public class AuthUserService implements UserDetailsService{
     private UserService userService;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
         // TODO Auto-generated method stub
-        UserDto userDto = userService.getByUserName(username);
+        UserDto userDto = userService.getUserByName(userId);
         // UserDto dto = new UserDto();
         // dto.setUserId(userEntity.getUserId());
         // dto.setUserName(userEntity.getUserName());
