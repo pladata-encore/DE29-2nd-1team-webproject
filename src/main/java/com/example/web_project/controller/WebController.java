@@ -42,11 +42,6 @@ public class WebController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/index")
-    public String getIndex(){
-        return "/bootstrapMain/index";
-    }
-
     @GetMapping("/post")
     public String getPost() {
         return "/bootstrapPost/post";
