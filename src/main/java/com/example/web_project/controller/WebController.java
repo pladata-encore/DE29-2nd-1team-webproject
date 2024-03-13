@@ -5,6 +5,10 @@ import java.time.LocalDate;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.web_project.model.DAO.PostDao;
 import com.example.web_project.model.DTO.PostDto;
+import com.example.web_project.model.Entity.PostEntity;
 import com.example.web_project.service.PostService;
 import com.example.web_project.service.impl.PostServiceImpl;
 
@@ -22,13 +28,19 @@ import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+import com.example.web_project.model.DTO.UserDto;
+import com.example.web_project.service.UserService;
+
+import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
 @RequestMapping("/v1/web")
+@Slf4j
 public class WebController {
     
     @Autowired
-    private PostServiceImpl postService;
-
+    private UserService userService;
 
     @GetMapping("/index")
     public String getIndex(){
@@ -40,63 +52,20 @@ public class WebController {
         return "/bootstrapPost/post";
     }
 
-    @PostMapping("/insertpost")
-    public String insertPost(@Valid @ModelAttribute PostDto dto,MultipartFile file) throws Exception{
-        
-        Date now = new Date();
-        dto.setPostDate(now);
-        
-        dto.setPostWriter(String.valueOf(Math.random()));
-        postService.insertPost(dto,file);
-
-        return "/bootstrapMain/index";
+    @GetMapping("/loginPage")
+    public String getLoginPage() {
+        return "/bootstrapJL/login";
     }
 
-    @GetMapping("/insertpost")
-    public String insertPost() {
-        return "/bootstrapPost/writeform";
+    @GetMapping("/registerPage")
+    public String getRegisterPage() {
+        return "/bootstrapJL/register";
     }
 
-    @GetMapping("/login")
-    public String login(){
-        return "/bootstrapMain/login";
+    @PostMapping("/register")
+    public String register(@Valid @ModelAttribute UserDto dto) {
+        log.info("[WebController][register] dto > " + dto.toString());
+        userService.joinUser(dto);
+        return "redirect:/v1/web/loginPage";
     }
-
-    @GetMapping("/view")
-    public String view(Model model) {
-
-        
-        PostDto dto= postService.getByPostId((long) 102);
-
-        System.out.println(dto.toString());
-
-        model.addAttribute("postWriter",dto.getPostWriter());
-        model.addAttribute("postTitle",dto.getPostTitle());
-        model.addAttribute("postContent",dto.getPostContent());
-        model.addAttribute("postFilePath",dto.getPostFilePath());
-        
-        
-
-        return "/bootstrapPost/view";
-    }
-
-    @GetMapping("/list")
-    public String boardList(Model model) {
-        model.addAttribute("lt", postService.getAllPost());
-        return "/bootstrapPost/boardList";
-    }
-
-    @GetMapping("/write")
-    public String getWrite() {
-        return "/bootstrapWrite/write";
-    }
-
-    
-    @GetMapping("/signup")
-    public String getSignup() {
-        return "/bootstrapMain/signup";
-    }
-
-
-    
 }
