@@ -5,8 +5,3 @@
 */
 // This file is intentionally blank
 // Use this file to add JavaScript to your project
-
-let write = document.getElementById("write");
-write.onclick = () => {
-    alert("로그인이 필요합니다.");
-}
