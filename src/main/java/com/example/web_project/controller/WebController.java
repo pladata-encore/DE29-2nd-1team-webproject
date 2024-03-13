@@ -6,6 +6,7 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.web_project.model.DAO.PostDao;
 import com.example.web_project.model.DTO.PostDto;
+import com.example.web_project.model.Entity.PostEntity;
 import com.example.web_project.service.PostService;
 import com.example.web_project.service.impl.PostServiceImpl;
 
@@ -42,63 +44,6 @@ public class WebController {
     public String getPost() {
         return "/bootstrapPost/post";
     }
-
-    @PostMapping("/insertpost")
-    public String insertPost(@Valid @ModelAttribute PostDto dto,MultipartFile file) throws Exception{
-        
-        Date now = new Date();
-        dto.setPostDate(now);
-        
-        dto.setPostWriter(String.valueOf(Math.random()));
-        postService.insertPost(dto,file);
-
-        return "/bootstrapMain/index";
-    }
-
-    @GetMapping("/insertpost")
-    public String insertPost() {
-        return "/bootstrapPost/writeform";
-    }
-
-    @GetMapping("/login")
-    public String login(){
-        return "/bootstrapMain/login";
-    }
-
-    @GetMapping("/view")
-    public String view(Model model) {
-
-        
-        PostDto dto= postService.getByPostId((long) 102);
-
-        System.out.println(dto.toString());
-
-        model.addAttribute("postWriter",dto.getPostWriter());
-        model.addAttribute("postTitle",dto.getPostTitle());
-        model.addAttribute("postContent",dto.getPostContent());
-        model.addAttribute("postFilePath",dto.getPostFilePath());
-        
-        
-
-        return "/bootstrapPost/view";
-    }
-
-    @GetMapping("/list")
-    public String boardList(Model model, @PageableDefault(page = 0,size= 5, sort="postDate") Pageable pageable) {
-        model.addAttribute("lt", postService.getAllPost(pageable));
-        Page<PostDao> list = postService.getAllPost(pageable);
-
-        int nowPage = list.getPageable().getPageNumber() +1;
-        int startPage = Math.max(nowPage-4,1);
-        int endPage = Math.min(nowPage+5,list.getTotalPages());
-        model.addAttribute("nowPage", nowPage);
-        model.addAttribute("startPage", startPage);
-        model.addAt
-        return "/bootstrapMain/index";
-    }
-
-    
-
 
     
 }

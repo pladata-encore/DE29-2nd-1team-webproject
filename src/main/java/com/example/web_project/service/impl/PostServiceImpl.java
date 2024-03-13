@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,6 +15,8 @@ import com.example.web_project.model.DAO.PostDao;
 import com.example.web_project.model.DTO.PostDto;
 import com.example.web_project.model.Entity.PostEntity;
 import com.example.web_project.service.PostService;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class PostServiceImpl implements PostService{
@@ -28,29 +31,29 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public List<PostDto> getAllPost(Pageable pageable) {
+    public Page<PostEntity> getAllPost(Pageable pageable) {
         // TODO Auto-generated method stub
-        List<PostEntity> postList = postDao.getAllPost(pageable);
-        List<PostDto> dtoList = new ArrayList<>();
-        for(PostEntity post : postList) {
-            PostDto dto = new PostDto();
-            dto.setPostId(post.getPostId());
-            dto.setPostTitle(post.getPostTitle());
-            dto.setPostContent(post.getPostContent());
-            dto.setPostWriter(post.getPostWriter());
-            dto.setPostDate(post.getPostDate());
-            dto.setPostTitle(post.getPostTitle());
-            dto.setPostFilePath(post.getPostFilePath());
+        Page<PostEntity> postList = postDao.getAllPost(pageable);
+        // Page<PostDto> dtoList = new ArrayList<>();
+        // for(PostEntity post : postList) {
+        //     PostDto dto = new PostDto();
+        //     dto.setPostId(post.getPostId());
+        //     dto.setPostTitle(post.getPostTitle());
+        //     dto.setPostContent(post.getPostContent());
+        //     dto.setPostWriter(post.getPostWriter());
+        //     dto.setPostDate(post.getPostDate());
+        //     dto.setPostTitle(post.getPostTitle());
+        //     dto.setPostFilePath(post.getPostFilePath());
 
-            dtoList.add(dto);
-        }
-        return dtoList;
+        //     dtoList.add(dto);
+        // }
+        return postList;
     }
 
     @Override
-    public PostDto getByPostId(Long i) {
+    public PostDto getByPostId(Long postId) {
         // TODO Auto-generated method stub
-        PostEntity post = postDao.getByPostId(i);
+        PostEntity post = postDao.getByPostId(postId);
         PostDto dto = new PostDto();
 
         dto.setPostId(post.getPostId());
@@ -118,6 +121,16 @@ public class PostServiceImpl implements PostService{
         PostEntity entity = postDao.getByPostId(dto.getPostId());
         System.err.println(entity.toString());
     }
+    @Transactional
+    public Boolean getListCheck(Pageable pageable) {
+        Page<PostEntity> saved = getAllPost(pageable);
+        Boolean check = saved.hasNext();
+
+        return check;
+    }
+
     
+    
+
 
 }
