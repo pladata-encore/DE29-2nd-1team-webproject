@@ -35,15 +35,15 @@
         <form  action="/v1/web/write" method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="postTitle" class="form-label">제목</label>
-                <input type="text"  name="postTitle" class="form-control" id="postTitle" placeholder="제목을 입력하세요">
+                <input type="textarea"  name="postTitle" class="form-control" id="postTitle" placeholder="제목을 입력하세요">
             </div>
             <div class="mb-3">
                 <label for="postContent" class="form-label">내용</label>
-                <textarea class="form-control"  name="postContent" id="postContent" rows="7" placeholder="내용을 입력하세요"></textarea>
+                <input class="form-control"  name="postContent" id="postContent" rows="7" placeholder="내용을 입력하세요"></input>
             </div>
             <div class="mb-3">
                 <label for="postTags" class="form-label">태그</label>
-                <input type="text" class="form-control" id="postTags" placeholder="태그를 입력하세요 (쉼표로 구분)">
+                <input type="text" class="form-control" name="postTags" id="postTags" placeholder="태그를 입력하세요 (쉼표로 구분)">
             </div>
             <div class="mb-3">
                 <label for="postFile" class="form-label" name>파일 첨부</label>
