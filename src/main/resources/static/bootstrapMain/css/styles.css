@@ -1,8 +1,8 @@
 @charset "UTF-8";
 /*!
-* Start Bootstrap - Small Business v5.0.6 (https://startbootstrap.com/template/small-business)
+* Start Bootstrap - Blog Home v5.0.9 (https://startbootstrap.com/template/blog-home)
 * Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-small-business/blob/master/LICENSE)
+* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-blog-home/blob/master/LICENSE)
 */
 /*!
  * Bootstrap  v5.2.3 (https://getbootstrap.com/)
@@ -5357,6 +5357,7 @@ textarea.form-control-lg {
   margin-bottom: 0;
   line-height: var(--bs-modal-title-line-height);
 }
+
 
 .modal-body {
   position: relative;

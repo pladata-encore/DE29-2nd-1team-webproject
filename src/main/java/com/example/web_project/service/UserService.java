@@ -18,4 +18,6 @@ public interface UserService {
 
     // delete
     public void deleteUser(String userId);
+
+    public UserDto loginuser(UserDto dto);
 }

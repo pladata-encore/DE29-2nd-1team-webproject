@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.web_project.model.DTO.PostDto;
 import com.example.web_project.model.DTO.UserDto;
@@ -40,9 +41,12 @@ public class ApiController {
 
     /* Post */
     @PostMapping("/insertPost")
-    public String insertPost(@Valid @RequestBody PostDto dto){
-        postService.insertPost(dto);
-        return "게시물 추가 성공";
+    public String insertPost(@Valid @RequestBody PostDto dto,MultipartFile file) throws Exception{
+        
+    
+        postService.insertPost(dto,file);
+
+        return "게시물 추가 성공"+ file.toString();
     }
 
     @GetMapping("/getPost")
@@ -50,4 +54,7 @@ public class ApiController {
         PostDto dto = postService.getByPostId(postId);
         return dto.toString();
     }
+    
+    
+
 }
