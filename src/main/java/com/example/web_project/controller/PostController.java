@@ -71,7 +71,7 @@ public class PostController {
         return "/bootstrapPost/view";
     }
 
-    @GetMapping("/list")
+    @GetMapping("/index")
     public String boardList(Model model, @PageableDefault(page = 0,size= 5, sort="postDate" ) Pageable pageable) {
         model.addAttribute("lt", postService.getAllPost(pageable));
         
