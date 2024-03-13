@@ -17,79 +17,18 @@
         <!-- 상단바 -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="#!">형록이와 아이들 게시판</a>
+                <a class="navbar-brand" href="#!">HooOk Board</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <!-- 회원가입 -->
-                        <li class="nav-item px-2 "><a class="nav-link" href="https://www.naver.com">회원가입</a></li>
+                        <li class="nav-item px-2 "><a class="nav-link" href="/v1/web/registerPage">SignUp</a></li>
                         <!-- 로그인(모달) -->
-                        <button class="btn btn-primary rounded-pill px-2 mb-1 mb-lg-0" data-bs-toggle="modal" data-bs-target="#LogInModal">
-                            <span class="d-flex align-items-center">
-                                <i class="bi-chat-text-fill me-2"></i>
-                                <span class="small">로그인</span>
-                            </span>
-                        </button>
+                        <li class="nav-item px-2 "><a class="nav-link" href="/v1/web/loginPage">Login</a></li>
                     </ul>
                 </div>
             </div>
             <!-- 상단바 로그인 모달(라이트박스, 사용자알림 등) -->
-            <div class="modal fade" id="LogInModal" tabindex="-1" aria-labelledby="LogInModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header bg-gradient-primary-to-secondary p-4">
-                            <h5 class="modal-title font-alt text-dark " id="LogInModalLabel">로그인</h5>
-                            <button class="btn-close btn-close-dark" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body border-0 p-4">
-                            <!-- * * * * * * * * * * * * * * * -->
-                            <!-- * * SB Forms Contact Form * * -->
-                            <!-- * * * * * * * * * * * * * * * -->
-                            <!-- This form is pre-integrated with SB Forms. -->
-                            <!-- To make this form functional, sign up at -->
-                            <!-- https://startbootstrap.com/solution/contact-forms -->
-                            <!-- to get an API token! -->
-                            <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                                <!-- 이메일 입력 -->
-                                <div class="form-floating mb-3">
-                                    <input class="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="email" />
-                                    <label for="email">Email</label>
-                                    <!-- 유효성 검사 메세지 -->
-                                    <div class="invalid-feedback" data-sb-feedback="email:email">올바른 이메일을 입력해주세요</div>
-                                </div>
-                                <!-- 비밀번호 입력 -->
-                                <div class="form-floating mb-3">
-                                    <input class="form-control" id="password" type="password" placeholder="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" data-sb-validations="required" />
-                                    <label for="password">Password</label>
-                                    <div class="invalid-feedback" data-sb-feedback="password:required">비밀번호를 입력해주세요</div>
-                                </div>
-                                <!-- 로그인 성공시-->
-                                <div class="d-none" id="submitSuccessMessage">
-                                    <div class="text-center mb-3"><div class="fw-bolder"></div>
-                                        <br />
-                                        <a href="post">여기 어떻게 하죠..</a>
-                                    </div>
-                                </div>
-                                <!-- 로그인 실패시 보낼 메세지 -->
-                                <div class="d-none" id="submitErrorMessage">
-                                    <div class="text-center text-danger mb-3">아이디 혹은 비밀번호가 틀렸습니다</div>
-                                </div>
-                                <!-- Submit 활성/비활성 버튼 -->
-                                <div class="d-grid"><button class="btn btn-primary rounded-pill btn-lg disabled" id="submitButton" type="submit">로그인</button></div>
-
-                                <!-- 회원가입 전환 -->
-                                <div class="modal-footer">
-                                    <div class="forgot login-footer">
-                                        <span>Looking to
-                                            <a href="signup">create an account</a>
-                                        ?</span>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
             
         </nav>
         <!-- 메인 페이지 화면 -->
@@ -134,6 +73,7 @@
             </div>
         </div>
         <!-- 게시글 -->
+        
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -148,63 +88,39 @@
                         </div>
                     </div>
                     <!-- 하단 게시글 Nested row for non-featured blog posts -->
+                    
                     <div class="row">
+                        
                         <div class="col-lg-6">
                             <!-- 게시글 -->
+                            {{#lt}}
                             <div class="card mb-4">
-                                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
+                                <a href="#!"><img class="card-img-top" src="{{postFilePath}}" alt="..." /></a>
                                 <div class="card-body">
-                                    <div class="small text-muted">January 1, 2023</div>
-                                    <h2 class="card-title h4">Post Title</h2>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
-                                    <a class="btn btn-primary" href="/v1/web/post">Read more →</a>
+                                    <div class="small text-muted">{{postDate}}</div>
+                                    <h2 class="card-title h4">{{postTitle}}</h2>
+                                    <p class="card-text">{{postWriter}}</p>
+                                    <a class="btn btn-primary" href="/v1/web/view?postId={{postId}})">Read more →</a>
                                 </div>
                             </div>
+                            {{/lt}}
                             <!-- 게시글 -->
-                            <div class="card mb-4">
-                                <a href="#!"><img class="card-img-top" src="https://img.khan.co.kr/news/2023/10/12/news-p.v1.20231012.dfbb660fe30e475f80e3e37348cbc7cf_P1.jpg" alt="..." /></a>
-                                <div class="card-body">
-                                    <div class="small text-muted">January 1, 2023</div>
-                                    <h2 class="card-title h4">Post Title</h2>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
-                                    <a class="btn btn-primary" href="/v1/web/post">Read more →</a>
-                                </div>
-                            </div>
+                            
                         </div>
-                        <div class="col-lg-6">
-                            <!-- 게시글 -->
-                            <div class="card mb-4">
-                                <a href="#!"><img class="card-img-top" src="https://newsimg.sedaily.com/2023/10/12/29VXIN0IUT_1.jpg" alt="..." /></a>
-                                <div class="card-body">
-                                    <div class="small text-muted">January 1, 2023</div>
-                                    <h2 class="card-title h4">Post Title</h2>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
-                                    <a class="btn btn-primary" href="/v1/web/post">Read more →</a>
-                                </div>
-                            </div>
-                            <!-- 게시글 -->
-                            <div class="card mb-4">
-                                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                                <div class="card-body">
-                                    <div class="small text-muted">January 1, 2023</div>
-                                    <h2 class="card-title h4">Post Title</h2>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam.</p>
-                                    <a class="btn btn-primary" href="/v1/web/post">Read more →</a>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
+                    
                     <!-- 페이징 -->
                     <nav aria-label="Pagination">
                         <hr class="my-0" />
                         <ul class="pagination justify-content-center my-4">
-                            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
-                            <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                            <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
-                            <li class="page-item"><a class="page-link" href="#!">15</a></li>
-                            <li class="page-item"><a class="page-link" href="#!">Older</a></li>
+                            <li class="page-item "><a class="page-link" href="?page={{previous}}" tabindex="-1" aria-disabled="true" >Newer</a></li>
+                            {{#check}}
+                                <li class="page-item"><a class="page-link" href="?page={{next}}">Next</a></li>
+                            {{/check}}
+                            {{^check}}
+                                <li class="page-item disabled"><a class="page-link" href="?page={{next}}">Next</a></li>
+                            {{/check}}
                         </ul>
                     </nav>
                 </div>

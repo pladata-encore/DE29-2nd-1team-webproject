@@ -3,6 +3,8 @@ package com.example.web_project.model.DAO.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.web_project.model.DAO.PostDao;
@@ -22,9 +24,9 @@ public class PostDaoImpl implements PostDao{
     }
 
     @Override
-    public List<PostEntity> getAllPost() {
+    public Page<PostEntity> getAllPost(Pageable page) {
         // TODO Auto-generated method stub
-        return postRepository.findAll();
+        return postRepository.findAll(page);
     }
 
     @Override

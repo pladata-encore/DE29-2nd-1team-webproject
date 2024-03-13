@@ -6,7 +6,7 @@ import com.example.web_project.model.Entity.UserEntity;
 
 public interface UserDao {
     // select
-    public UserEntity getByUserName(String userName);
+    public UserEntity getUserByName(String userId);
 
     public List<UserEntity> getAllUser();
 

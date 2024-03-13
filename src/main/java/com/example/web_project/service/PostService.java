@@ -2,15 +2,18 @@ package com.example.web_project.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.web_project.model.DTO.PostDto;
+import com.example.web_project.model.Entity.PostEntity;
 
 public interface PostService {
     // select
     public PostDto getByPostId(Long postId);
 
-    public List<PostDto> getAllPost();
+    public Page<PostEntity> getAllPost(Pageable pageable);
 
     // insert
     public void insertPost(PostDto dto,MultipartFile file) throws Exception;
