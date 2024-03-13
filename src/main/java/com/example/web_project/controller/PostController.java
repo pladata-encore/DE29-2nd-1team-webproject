@@ -26,6 +26,18 @@ public class PostController {
     @Autowired
     private PostServiceImpl postService;
     
+    @GetMapping("/postdelete")
+    public String deletePost(@RequestParam String id) {
+
+        System.out.println(id);
+        Long postId = Long.valueOf(id);
+
+        postService.deletePost(postId);
+
+        return "redirect:/v1/web/index";
+    }
+
+   
     
     
     @PostMapping("/write")
@@ -61,6 +73,7 @@ public class PostController {
         model.addAttribute("postContent",dto.getPostContent());
         model.addAttribute("postFilePath",dto.getPostFilePath());
         model.addAttribute("postDate",dto.getPostDate());
+        model.addAttribute("postId",dto.getPostId());
         
         
 
@@ -78,5 +91,8 @@ public class PostController {
         
         return "/bootstrapMain/index";
     }
+
+    @GetMapping("/update")
+    public Stirng post
 
 }
