@@ -93,6 +93,34 @@ public class PostController {
     }
 
     @GetMapping("/update")
-    public Stirng post
+    public String update(Model model,@RequestParam String id){
+
+
+        Long longpostId = Long.parseLong(id);
+        PostDto dto= postService.getByPostId(longpostId);
+
+        model.addAttribute("postWriter",dto.getPostWriter());
+        model.addAttribute("postTitle",dto.getPostTitle());
+        model.addAttribute("postContent",dto.getPostContent());
+        model.addAttribute("postFilePath",dto.getPostFilePath());
+        model.addAttribute("postDate",dto.getPostDate());
+        model.addAttribute("postId",dto.getPostId());
+        
+
+        return "/bootstrapWrite/update";
+
+
+    }
+
+    // @PostMapping("/update")
+    // public Stirng postupdate(){
+
+    //     return
+    // }
+        
+
+        
+
+    
 
 }
