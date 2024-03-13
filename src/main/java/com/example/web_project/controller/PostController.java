@@ -81,27 +81,4 @@ public class PostController {
         return "/bootstrapPost/post";
     }
 
-    @GetMapping("/index")
-    public String boardList(Model model, @PageableDefault(page = 0,size= 5, sort="postDate" ) Pageable pageable) {
-        model.addAttribute("lt", postService.getAllPost(pageable));
-        
-        model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
-        model.addAttribute("next", pageable.next().getPageNumber());
-        model.addAttribute("check", postService.getListCheck(pageable));
-
-        
-        return "/bootstrapMain/index";
-    }
-
-    // @GetMapping("/user/index")
-    // public String boardListUser(Model model, @PageableDefault(page = 0,size= 5, sort="postDate" ) Pageable pageable) {
-    //     model.addAttribute("lt", postService.getAllPost(pageable));
-        
-    //     model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
-    //     model.addAttribute("next", pageable.next().getPageNumber());
-    //     model.addAttribute("check", postService.getListCheck(pageable));
-
-        
-    //     return "/bootstrapMain/user/index";
-    // }
 }
