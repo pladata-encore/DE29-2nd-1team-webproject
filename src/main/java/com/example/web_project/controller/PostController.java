@@ -38,6 +38,10 @@ public class PostController {
 
         return "/bootstrapMain/index";
     }
+    @GetMapping("write")
+    public String write(){
+        return "/bootstrapWrite/write";
+    }
 
     @GetMapping("/insertpost")
     public String insertPost() {

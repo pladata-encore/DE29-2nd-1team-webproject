@@ -6,7 +6,7 @@ import com.example.web_project.model.Entity.CommentEntity;
 
 
 
-public interface CommnetDao {
+public interface CommentDao {
 
     public CommentEntity getByCommentId(Long commentId);
 
