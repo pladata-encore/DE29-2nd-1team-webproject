@@ -86,7 +86,16 @@ public class WebController {
         return "/bootstrapPost/boardList";
     }
 
+    @GetMapping("/write")
+    public String getWrite() {
+        return "/bootstrapWrite/write";
+    }
+
     
+    @GetMapping("/signup")
+    public String getSignup() {
+        return "/bootstrapMain/signup";
+    }
 
 
     

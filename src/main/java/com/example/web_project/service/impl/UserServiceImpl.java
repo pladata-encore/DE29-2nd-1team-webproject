@@ -110,6 +110,11 @@ public class UserServiceImpl implements UserService{
         
     }
 
+    public static void insertUser(String userName, String userEmail, String userPw) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'insertUser'");
+    }
+
     
     
 }
