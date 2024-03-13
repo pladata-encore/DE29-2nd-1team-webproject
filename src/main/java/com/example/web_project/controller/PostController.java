@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.web_project.model.DTO.PostDto;
@@ -27,7 +28,7 @@ public class PostController {
     
     
     
-    @PostMapping("/insertpost")
+    @PostMapping("/write")
     public String insertPost(@Valid @ModelAttribute PostDto dto,MultipartFile file) throws Exception{
         
         Date now = new Date();
@@ -36,25 +37,20 @@ public class PostController {
         dto.setPostWriter(String.valueOf(Math.random()));
         postService.insertPost(dto,file);
 
-        return "/bootstrapMain/index";
+        return "redirect:/v1/web/index";
     }
     @GetMapping("write")
     public String write(){
         return "/bootstrapWrite/write";
     }
 
-    @GetMapping("/insertpost")
-    public String insertPost() {
-        return "/bootstrapPost/writeform";
-    }
+   
+    @GetMapping("/post2")
+    public String view(Model model, @RequestParam String postId) {
 
 
-    @GetMapping("/view")
-    public String view(Model model)/*,@RequestParam String postId)*/ {
-
-
-        //Long longpostId = Long.parseLong(postId);
-        PostDto dto= postService.getByPostId((long)52);
+        Long longpostId = Long.parseLong(postId);
+        PostDto dto= postService.getByPostId(longpostId);
 
     
 
@@ -64,10 +60,11 @@ public class PostController {
         model.addAttribute("postTitle",dto.getPostTitle());
         model.addAttribute("postContent",dto.getPostContent());
         model.addAttribute("postFilePath",dto.getPostFilePath());
+        model.addAttribute("postDate",dto.getPostDate());
         
         
 
-        return "/bootstrapPost/view";
+        return "/bootstrapPost/post";
     }
 
     @GetMapping("/index")
