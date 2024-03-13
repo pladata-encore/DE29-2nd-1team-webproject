@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.example.web_project.model.DAO.CommnetDao;
+import com.example.web_project.model.DAO.CommentDao;
 import com.example.web_project.model.Entity.CommentEntity;
 import com.example.web_project.model.Repository.CommnetRepository;
 
 
-public class CommnetDaoImpl implements CommnetDao{
+public class CommentDaoImpl implements CommentDao{
 
     @Autowired
     private CommnetRepository commentRepository;

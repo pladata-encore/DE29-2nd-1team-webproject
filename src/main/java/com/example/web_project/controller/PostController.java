@@ -39,15 +39,14 @@ public class PostController {
 
         return "/bootstrapMain/index";
     }
+    @GetMapping("write")
+    public String write(){
+        return "/bootstrapWrite/write";
+    }
 
     @GetMapping("/insertpost")
     public String insertPost() {
         return "/bootstrapPost/writeform";
-    }
-
-    @GetMapping("/login")
-    public String login(){
-        return "/bootstrapMain/login";
     }
 
     @GetMapping("/view")
@@ -75,7 +74,7 @@ public class PostController {
     public String boardList(Model model, @PageableDefault(page = 0,size= 5, sort="postDate" ) Pageable pageable) {
         model.addAttribute("lt", postService.getAllPost(pageable));
         
-        model.addAttribute("prvious", pageable.previousOrFirst().getPageNumber());
+        model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
         model.addAttribute("next", pageable.next().getPageNumber());
         model.addAttribute("check", postService.getListCheck(pageable));
 

@@ -42,7 +42,6 @@ public class WebController {
     @Autowired
     private UserService userService;
 
-
     @GetMapping("/post")
     public String getPost() {
         return "/bootstrapPost/post";
