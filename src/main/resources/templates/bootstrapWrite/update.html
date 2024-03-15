@@ -32,18 +32,18 @@
         <div class="row justify-content-center">
         <div class="col-12 col-md-8">
         <h3 class="mb-4">글 작성</h3>
-        <form  action="/v1/web/write" method="post" enctype="multipart/form-data">
+        <form  action="/v1/web/postupdate?id={{postId}}" method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="postTitle" class="form-label">제목</label>
                 <input type="text"  name="postTitle" class="form-control" id="postTitle"  value={{postTitle}}>
             </div>
             <div class="mb-3">
                 <label for="postContent" class="form-label">내용</label>
-                <textarea class="form-control"  name="postContent" id="postContent" rows="7"   value={{postTitle}}></textarea>
+                <textarea class="form-control"  name="postContent" id="postContent" rows="7">{{postContent}}</textarea>
             </div>
             <div class="mb-3">
                 <label for="postTags" class="form-label">태그</label>
-                <input type="text" class="form-control" id="postTags" placeholder="태그를 입력하세요 (쉼표로 구분)"  value={{postTitle}}>
+                <input type="text" class="form-control" id="postTags" placeholder="태그를 입력하세요 (쉼표로 구분)"  >
             </div>
             <div class="mb-3">
                 <label for="postFile" class="form-label" name>파일 첨부</label>
