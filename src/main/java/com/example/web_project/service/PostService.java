@@ -14,10 +14,10 @@ public interface PostService {
     public Page<PostEntity> getAllPost(Pageable pageable);
 
     // insert
-    public void insertPost(PostDto dto,MultipartFile file) throws Exception;
+    public PostEntity insertPost(PostDto dto,MultipartFile file) throws Exception;
 
     // update
-    public void updatePost(PostDto dto);
+    public void updatePost(PostDto dto, MultipartFile file) throws Exception;
 
     // delete
     public void deletePost(Long postId);

@@ -45,5 +45,4 @@ public class WebController {
         userService.joinUser(dto);
         return "redirect:/v1/web/loginPage";
     }
-
 }

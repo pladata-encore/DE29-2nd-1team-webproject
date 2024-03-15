@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.web_project.model.DTO.PostDto;
+import com.example.web_project.model.Entity.PostEntity;
 import com.example.web_project.service.impl.PostServiceImpl;
 
 import jakarta.validation.Valid;
@@ -30,7 +31,7 @@ public class UserController {
     private PostServiceImpl postService;
 
     @GetMapping("/user/index")
-    public String userIndexPage(Authentication authentication, Model model, @PageableDefault(page = 0,size= 5, sort="postDate" ) Pageable pageable) {
+    public String userIndexPage(Authentication authentication, Model model, @PageableDefault(page = 0,size= 6, sort="postDate" ) Pageable pageable) {
         
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         log.info("[UserController][userDetails] userName >> " + userDetails.getUsername());
@@ -59,9 +60,14 @@ public class UserController {
 
         Date now = new Date();
         dto.setPostDate(now);
-        
-        dto.setPostWriter(String.valueOf(Math.random()));
-        postService.insertPost(dto, file);
+        dto.setPostWriter(userDetails.getUsername()); // 작성자 id 반환
+
+        PostEntity entity = postService.insertPost(dto, file);
+
+        dto.setPostFileName(entity.getPostFileName());
+        dto.setPostFilePath(entity.getPostFilePath());
+
+        log.info("[UserController][userWrite] dto >>> "+dto);
 
         return "redirect:/v1/web/user/index";
     }
