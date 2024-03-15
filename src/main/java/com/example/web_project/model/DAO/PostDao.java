@@ -1,6 +1,7 @@
 package com.example.web_project.model.DAO;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.example.web_project.model.Entity.PostEntity;
 
@@ -8,7 +9,7 @@ public interface PostDao {
     // select
     public PostEntity getByPostId(Long postId);
 
-    public List<PostEntity> getAllPost();
+    public Page<PostEntity> getAllPost(Pageable pageable);
 
     // insert
     public void insertPost(PostEntity entity);

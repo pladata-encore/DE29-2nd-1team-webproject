@@ -29,10 +29,10 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    public UserEntity getByUserName(String userName) {
+    public UserEntity getUserByName(String userId) {
         // TODO Auto-generated method stub
         
-        return userRepository.getByUserName(userName);
+        return userRepository.getUserByName(userId);
     }
 
     @Override
@@ -46,5 +46,7 @@ public class UserDaoImpl implements UserDao{
         // TODO Auto-generated method stub
         userRepository.save(entity);
     }
+
+  
     
 }

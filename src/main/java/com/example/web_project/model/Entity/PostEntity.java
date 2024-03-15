@@ -40,4 +40,11 @@ public class PostEntity {
     
     @NotEmpty
     private String postContent;
+
+    private String postFileName;
+
+    private String postFilePath;
+
+    
+
 }

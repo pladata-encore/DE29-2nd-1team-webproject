@@ -19,4 +19,5 @@ public class UserDto {
     private String userEmail;
     private int userAge;
     private String userRole;
+    private Boolean isLogin;
 }

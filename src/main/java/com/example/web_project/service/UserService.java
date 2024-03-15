@@ -6,7 +6,7 @@ import com.example.web_project.model.DTO.UserDto;
 
 public interface UserService {
     // select
-    public UserDto getByUserName(String userName);
+    public UserDto getUserByName(String userId);
 
     public List<UserDto> getAllUser();
 
@@ -18,4 +18,10 @@ public interface UserService {
 
     // delete
     public void deleteUser(String userId);
+
+    // 로그인 성공 시 >> 로그인 유무 저장
+    public void updateIsLoginByName(String userId, Boolean isLogin);
+
+    // 회원가입
+    public void joinUser(UserDto dto);
 }
