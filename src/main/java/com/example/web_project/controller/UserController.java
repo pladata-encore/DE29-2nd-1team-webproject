@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.web_project.model.DTO.UserDto;
 import com.example.web_project.service.UserService;
 import com.example.web_project.service.impl.PostServiceImpl;
+import com.example.web_project.service.impl.UserServiceImpl;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +28,9 @@ public class UserController {
     
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserServiceImpl userServiceImpl;
 
     @Autowired
     private PostServiceImpl postService;
@@ -42,8 +47,19 @@ public class UserController {
         model.addAttribute("check", postService.getListCheck(pageable));
 
         return "/bootstrapMain/user/index";
+
     }
 
     // @GetMapping("/user/write")
     // public String userWritePage(Authentication authentication, Model)
+
+    @GetMapping("/userdelete")
+    public String deleteUser(@RequestParam String userId) {
+
+        System.out.println(userId);
+
+        userServiceImpl.deleteUser(userId);
+
+        return "redirect:index";
+    }
 }

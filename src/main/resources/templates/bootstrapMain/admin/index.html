@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body>
+    <h2>사용자 목록</h2>
+        <h3>관리자 {{admin}}님</h3>
+<title>사용자 관리</title>
+</head>
+    {{#userlist}}
+    <div class="member_list" >
+        <table class="admin_board_wrap" id="user-admin">
+            <thead class="admin_boardList">
+                <th class="admin_board_head">아이디</th>
+                <th class="admin_board_head">이름</th>
+                <th class="admin_board_head">이메일</th>
+                <th class="admin_board_head">나이</th>
+                <th class="admin_board_head">권한</th>
+                <th class="admin_board_head">게시글 삭제</th>
+                <th class="admin_board_head">계정 삭제</th>
+            </thead>
+            <tbody>
+                <tr class="admin_board_content">
+                    <td class="admin_board_content_nm">{{userId}}</td>
+                    <td class="admin_board_content_nm">{{userName}}</td>
+                    <td class="admin_board_content_nm">{{userEmail}}</td>
+                    <td class="admin_board_content_nm">{{userAge}}</td>
+                    <td class="admin_board_content_nm">{{userRole}}</td>
+                    <>
+                    <td type="button" class="btn btn-danger" ><a href="/v1/web/postdelete?id={{postId}}">게시글 삭제</a></td>
+                    <td type="button" class="btn btn-danger" ><a href="/v1/web/userdelete?id={{userId}}">계정 삭제</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{{/userlist}}
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="/bootstrapPost/js/scripts.js"></script>
+</body>
+</html>

@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.validation.Valid;
 
-
+import com.example.web_project.model.DAO.PostDao;
 import com.example.web_project.model.DTO.UserDto;
+import com.example.web_project.model.Repository.PostRepository;
+import com.example.web_project.model.Repository.UserRepository;
 import com.example.web_project.service.UserService;
 import com.example.web_project.service.impl.PostServiceImpl;
 
@@ -31,7 +33,13 @@ public class WebController {
     private UserService userService;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private PostServiceImpl postService;
+
+    @Autowired
+    private PostRepository postRepository;
 
     @GetMapping("/post")
     public String getPost() {
@@ -55,5 +63,14 @@ public class WebController {
         return "redirect:/v1/web/loginPage";
     }
 
+    @GetMapping("/admin/setting")
+    public String adminSetting(Authentication authentication, Model model) {
+        model.addAttribute("admin", authentication.getName());
+        model.addAttribute("userlist", userRepository.findAll());
+        model.addAttribute("postId", postRepository.findAll());
+        log.info("[admin]: " + userRepository.findAll());
+
+        return "/bootstrapMain/admin/index";
+    }
     
 }
