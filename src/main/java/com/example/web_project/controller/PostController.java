@@ -1,10 +1,13 @@
 package com.example.web_project.controller;
 
+import java.io.PrintWriter;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,29 +20,20 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.web_project.model.DTO.PostDto;
 import com.example.web_project.service.impl.PostServiceImpl;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("/v1/web")
+@Slf4j
 public class PostController {
 
     @Autowired
     private PostServiceImpl postService;
     
-    @GetMapping("/postdelete")
-    public String deletePost(@RequestParam String id) {
 
-        System.out.println(id);
-        Long postId = Long.valueOf(id);
-
-        postService.deletePost(postId);
-
-        return "redirect:/v1/web/index";
-    }
-
-   
-    
-    
     @PostMapping("/write")
     public String insertPost(@Valid @ModelAttribute PostDto dto, MultipartFile file) throws Exception{
         
@@ -58,9 +52,12 @@ public class PostController {
     }
 
     
-    @GetMapping("/post2")
-    public String view(Model model, @RequestParam String postId) {
-
+    @GetMapping("/user/post2")
+    public String view(Model model, @RequestParam String postId, Authentication authentication) {
+        
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String userId = userDetails.getUsername();
+        log.info("[PostController][view] userName >> " + userId);
 
         Long longpostId = Long.parseLong(postId);
         PostDto dto = postService.getByPostId(longpostId);
@@ -76,9 +73,7 @@ public class PostController {
         model.addAttribute("postDate",dto.getPostDate());
         model.addAttribute("postId",dto.getPostId());
         
-        
-
-        return "/bootstrapPost/post";
+        return "/bootstrapMain/user/post";
     }
 
     @GetMapping("/index")
@@ -89,7 +84,76 @@ public class PostController {
         model.addAttribute("next", pageable.next().getPageNumber());
         model.addAttribute("check", postService.getListCheck(pageable));
 
-        
         return "/bootstrapMain/index";
     }
+
+
+    @GetMapping("/user/postdelete")
+    public String deletePost(@RequestParam String id, Authentication authentication, HttpServletResponse response) throws Exception{
+        
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String userId = userDetails.getUsername();
+        log.info("[PostController][deletePost] userId >>> " + userId);
+        // System.out.println(Id);
+        Long postId = Long.valueOf(id);
+        PostDto dto = postService.getByPostId(postId);
+        String postWriter = dto.getPostWriter();
+        log.info("[PostController][deletePost] postWrite >>> " + postWriter);
+
+        if (postWriter.equals(userId)) {
+            log.info("[PostController][deletePost] IF")
+            ;
+            postService.deletePost(postId);
+
+            // request.setAttribute("msg", "게시물을 삭제하였습니다.");
+            // request.setAttribute("url", "/v1/web/user/index");
+            response.setContentType("text/html; charset=euc-kr");
+            PrintWriter out = response.getWriter();
+            out.println("<script> alert('게시물이 삭제되었습니다.'); </script>");
+            out.flush();
+            // log.info("[PostController][deletePost] HttpServletRequest >>> " + request);
+            log.info("[PostController][deletePost] HttpServletRequest >>> " + response);
+            return "/v1/web/user/index";
+
+        } else {
+            log.info("[PostController][deletePost] ELSE");
+            // request.setAttribute("msg", "게시물을 삭제할 수 없습니다.");
+            // request.setAttribute("url", "/v1/web/user/post2?postId="+postId);
+            // log.info("[PostController][deletePost] HttpServletRequest >>> " + request);
+            response.setContentType("text/html; charset=euc-kr");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('게시물을 삭제할 수 없습니다.'); </script>");
+            out.flush();
+            log.info("[PostController][deletePost] HttpServletRequest >>> " + response);
+            return "redirect:/v1/web/user/post2?postId="+postId;
+            // 경고창 띄우고싶음
+        }
+
+        // return "redirect:/v1/web/user/index";
+    }
+
+    @GetMapping("/postupdate")
+    public String updatePost(@RequestParam String id, Authentication authentication) {
+        
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String userId = userDetails.getUsername();
+        log.info("[PostController][updatePost] userName >> " + userId);
+
+        return "redirect:/v1/web/user/index";
+    }
+
+    //     // System.out.println(Id);
+    //     Long postId = Long.valueOf(id);
+    //     PostDto dto = postService.getByPostId(postId);
+    //     String postWriter = dto.getPostWriter();
+
+    //     if (postWriter ==  userId) {
+    //         postService.updatePost(dto);
+    //     } else {
+    //         return "redirect:/v1/web/user/index";
+    //         // 경고창 띄우고싶음
+    //     }
+
+    //     return "redirect:/v1/web/user/index";
+    // }
 }
