@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.ScriptUtils;
 import com.example.web_project.model.DTO.PostDto;
 import com.example.web_project.service.impl.PostServiceImpl;
 
@@ -152,30 +153,13 @@ public class PostController {
         log.info("[PostController][deletePost] postWrite >>> " + postWriter);
 
         if (postWriter.equals(userId)) {
-            log.info("[PostController][deletePost] IF")
-            ;
+            log.info("[PostController][deletePost] IF");
             postService.deletePost(postId);
-
-            // request.setAttribute("msg", "게시물을 삭제하였습니다.");
-            // request.setAttribute("url", "/v1/web/user/index");
-            response.setContentType("text/html; charset=euc-kr");
-            PrintWriter out = response.getWriter();
-            out.println("<script> alert('게시물이 삭제되었습니다.'); </script>");
-            out.flush();
-            // log.info("[PostController][deletePost] HttpServletRequest >>> " + request);
-            log.info("[PostController][deletePost] HttpServletRequest >>> " + response);
-            return "/v1/web/user/index";
-
+            ScriptUtils.alertAndMovePage(response, "게시물을 삭제했습니다.", "/v1/web/user/index");
+            return "redirect:/v1/web/user/index";
         } else {
             log.info("[PostController][deletePost] ELSE");
-            // request.setAttribute("msg", "게시물을 삭제할 수 없습니다.");
-            // request.setAttribute("url", "/v1/web/user/post2?postId="+postId);
-            // log.info("[PostController][deletePost] HttpServletRequest >>> " + request);
-            response.setContentType("text/html; charset=euc-kr");
-            PrintWriter out = response.getWriter();
-            out.println("<script>alert('게시물을 삭제할 수 없습니다.'); </script>");
-            out.flush();
-            log.info("[PostController][deletePost] HttpServletRequest >>> " + response);
+            ScriptUtils.alertAndMovePage(response, "게시물을 삭제할 권한이 없습니다.", "/v1/web/user/post2?postId="+postId);
             return "redirect:/v1/web/user/post2?postId="+postId;
             // 경고창 띄우고싶음
         }
@@ -183,28 +167,14 @@ public class PostController {
         // return "redirect:/v1/web/user/index";
     }
 
-    @GetMapping("/postupdate")
-    public String updatePost(@RequestParam String id, Authentication authentication) {
+    // @GetMapping("/postupdate")
+    // public String updatePost(@RequestParam String id, Authentication authentication) {
         
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        String userId = userDetails.getUsername();
-        log.info("[PostController][updatePost] userName >> " + userId);
-
-        return "redirect:/v1/web/user/index";
-    }
-
-    //     // System.out.println(Id);
-    //     Long postId = Long.valueOf(id);
-    //     PostDto dto = postService.getByPostId(postId);
-    //     String postWriter = dto.getPostWriter();
-
-    //     if (postWriter ==  userId) {
-    //         postService.updatePost(dto);
-    //     } else {
-    //         return "redirect:/v1/web/user/index";
-    //         // 경고창 띄우고싶음
-    //     }
+    //     UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+    //     String userId = userDetails.getUsername();
+    //     log.info("[PostController][updatePost] userName >> " + userId);
 
     //     return "redirect:/v1/web/user/index";
     // }
+
 }
