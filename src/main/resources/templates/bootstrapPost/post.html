@@ -19,8 +19,8 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/v1/web/registerPage">SignUp</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/v1/web/loginPage">Login</a></li>
                     </ul>
                 </div>
             </div>
@@ -51,9 +51,7 @@
                     </article>
                     <!-- 버튼 추가 -->
                     <div class="my-4 text-end">
-                        <button type="button" class="btn btn-primary" ><a href="/v1/web/postupdate?id={{postId}}">수정</a></button>
-                        <button type="button" class="btn btn-danger" ><a href="/v1/web/postdelete?id={{postId}}">삭제</a></button>
-                        <button type="button" class="btn btn-secondary">목록</button>
+                        <button type="button" class="btn btn-secondary" onClick="location.href='/v1/web/index'">목록</button>
                     </div>
                     <!-- Comments section-->
                     <section class="mb-5">

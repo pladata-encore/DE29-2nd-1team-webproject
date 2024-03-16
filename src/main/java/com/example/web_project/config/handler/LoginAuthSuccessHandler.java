@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
+import com.example.ScriptUtils;
 import com.example.web_project.service.UserService;
 
 import jakarta.servlet.ServletException;
@@ -32,7 +33,8 @@ public class LoginAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandl
 
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         userService.updateIsLoginByName(userDetails.getUsername(), true);
-        response.sendRedirect("/v1/web/user/index");
+        ScriptUtils.alertAndMovePage(response, String.format("%s님 환영합니다!", userDetails.getUsername()), "/v1/web/user/index");
+        // response.sendRedirect("/v1/web/user/index");
         super.onAuthenticationSuccess(request, response, authentication);
     }
 
