@@ -31,8 +31,8 @@
         
         <div class="row justify-content-center">
         <div class="col-12 col-md-8">
-        <h3 class="mb-4">글 작성</h3>
-        <form  action="/v1/web/postupdate?id={{postId}}" method="post" enctype="multipart/form-data">
+        <h3 class="mb-4">게시글 수정</h3>
+        <form  action="/v1/web/user/postupdate?id={{postId}}" method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="postTitle" class="form-label">제목</label>
                 <input type="text"  name="postTitle" class="form-control" id="postTitle"  value={{postTitle}}>

@@ -13,11 +13,16 @@ public interface PostService {
 
     public Page<PostEntity> getAllPost(Pageable pageable);
 
+    public Page<PostEntity> findAllByOrderByPostIdDesc(Pageable pageable);
+
+    public PostDto findMostViewedPost();
     // insert
     public PostEntity insertPost(PostDto dto,MultipartFile file) throws Exception;
 
     // update
-    public void updatePost(PostDto dto, MultipartFile file) throws Exception;
+    public PostEntity updatePost(PostDto dto, MultipartFile file) throws Exception;
+
+    public void saveDto(PostDto dto);
 
     // delete
     public void deletePost(Long postId);
