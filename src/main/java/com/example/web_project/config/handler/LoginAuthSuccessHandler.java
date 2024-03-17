@@ -40,8 +40,7 @@ public class LoginAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandl
         } else {
             response.sendRedirect("/v1/web/user/index");
         }
-        // response.sendRedirect("/v1/web/user/index");
-        ScriptUtils.alertAndMovePage(response, String.format("%s님 환영합니다!", userDetails.getUsername()), "/v1/web/user/index");
+        // ScriptUtils.alertAndMovePage(response, String.format("%s님 환영합니다!", userDetails.getUsername()), "/v1/web/user/index");
         super.onAuthenticationSuccess(request, response, authentication);
     }
 
