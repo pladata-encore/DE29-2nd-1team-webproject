@@ -14,6 +14,7 @@ import com.example.ScriptUtils;
 import com.example.web_project.model.DTO.UserDto;
 import com.example.web_project.service.UserService;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller

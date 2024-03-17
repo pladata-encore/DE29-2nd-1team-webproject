@@ -45,6 +45,7 @@ public class UserController {
 
         model.addAttribute("userId", userDetails.getUsername());
         return "/bootstrapMain/user/index";
+
     }
 
     @GetMapping("/user/write")
