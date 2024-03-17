@@ -32,7 +32,14 @@ public class LoginAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandl
 
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         userService.updateIsLoginByName(userDetails.getUsername(), true);
-        response.sendRedirect("/v1/web/user/index");
+        if (userDetails.getUsername() == null) {
+            response.sendRedirect("/v1/web/index");
+        } else if (userDetails.getUsername().equals("admin")) {
+            response.sendRedirect("/v1/web/admin/index");
+        } else {
+            response.sendRedirect("/v1/web/user/index");
+        }
+        // response.sendRedirect("/v1/web/user/index");
         super.onAuthenticationSuccess(request, response, authentication);
     }
 

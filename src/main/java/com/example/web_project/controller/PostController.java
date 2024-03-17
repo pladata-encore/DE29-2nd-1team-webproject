@@ -1,6 +1,5 @@
 package com.example.web_project.controller;
 
-import java.io.PrintWriter;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,7 +20,6 @@ import com.example.ScriptUtils;
 import com.example.web_project.model.DTO.PostDto;
 import com.example.web_project.service.impl.PostServiceImpl;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -100,25 +97,25 @@ public class PostController {
         return "/bootstrapMain/index";
     }
 
-    @GetMapping("/postupdate")
-    public String update(Model model,@RequestParam String id){
+    // @GetMapping("/postupdate")
+    // public String update(Model model,@RequestParam String id){
 
 
-        Long longpostId = Long.parseLong(id);
-        PostDto dto= postService.getByPostId(longpostId);
+    //     Long longpostId = Long.parseLong(id);
+    //     PostDto dto= postService.getByPostId(longpostId);
 
-        model.addAttribute("postWriter",dto.getPostWriter());
-        model.addAttribute("postTitle",dto.getPostTitle());
-        model.addAttribute("postContent",dto.getPostContent());
-        model.addAttribute("postFilePath",dto.getPostFilePath());
-        model.addAttribute("postDate",dto.getPostDate());
-        model.addAttribute("postId",dto.getPostId());
+    //     model.addAttribute("postWriter",dto.getPostWriter());
+    //     model.addAttribute("postTitle",dto.getPostTitle());
+    //     model.addAttribute("postContent",dto.getPostContent());
+    //     model.addAttribute("postFilePath",dto.getPostFilePath());
+    //     model.addAttribute("postDate",dto.getPostDate());
+    //     model.addAttribute("postId",dto.getPostId());
         
 
-        return "/bootstrapWrite/update";
+    //     return "/bootstrapWrite/update";
 
 
-    }
+    // }
 
     @PostMapping("/postupdate")
     public String postupdate(@Valid @ModelAttribute PostDto dto, MultipartFile file ,@RequestParam String id )throws Exception{
@@ -134,10 +131,6 @@ public class PostController {
 
         return "redirect:index";
     }
-        
-
-        
-
     
 
     @GetMapping("/user/postdelete")
@@ -157,7 +150,14 @@ public class PostController {
             postService.deletePost(postId);
             ScriptUtils.alertAndMovePage(response, "게시물을 삭제했습니다.", "/v1/web/user/index");
             return "redirect:/v1/web/user/index";
-        } else {
+        } 
+        else if (postWriter.equals(userId) || userDetails.getUsername().equals("admin")) {
+            log.info("[PostController][deletePost] IF");
+            postService.deletePost(postId);
+            ScriptUtils.alertAndMovePage(response, "게시물을 삭제했습니다.", "/v1/web/admin/index");
+            return "redirect:/v1/web/admin/index";
+        } 
+        else {
             log.info("[PostController][deletePost] ELSE");
             ScriptUtils.alertAndMovePage(response, "게시물을 삭제할 권한이 없습니다.", "/v1/web/user/post2?postId="+postId);
             return "redirect:/v1/web/user/post2?postId="+postId;
@@ -176,5 +176,6 @@ public class PostController {
 
     //     return "redirect:/v1/web/user/index";
     // }
+
 
 }

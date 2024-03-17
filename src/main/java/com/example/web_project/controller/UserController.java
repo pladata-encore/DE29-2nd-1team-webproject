@@ -13,13 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.web_project.model.DTO.PostDto;
 import com.example.web_project.model.Entity.PostEntity;
 import com.example.web_project.service.impl.PostServiceImpl;
-import com.example.web_project.service.impl.UserServiceImpl;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -28,9 +26,6 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/v1/web")
 @Slf4j
 public class UserController {
-
-    @Autowired
-    private UserServiceImpl userServiceImpl;
 
     @Autowired
     private PostServiceImpl postService;
@@ -80,14 +75,4 @@ public class UserController {
 
     // @GetMapping("/user/write")
     // public String userWritePage(Authentication authentication, Model)
-
-    @GetMapping("/userdelete")
-    public String deleteUser(@RequestParam String userId) {
-
-        System.out.println(userId);
-
-        userServiceImpl.deleteUser(userId);
-
-        return "redirect:index";
-    }
 }
