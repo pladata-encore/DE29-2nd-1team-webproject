@@ -53,9 +53,9 @@
                     </article>
                     <!-- 버튼 추가 -->
                     <div class="my-4 text-end">
-                        <button type="button" class="btn btn-primary" >수정</button>
-                        <button type="button" id="delete" class="btn btn-danger" ><a href="/v1/web/user/postdelete?id={{postId}}">삭제</a></button>
-                        <button type="button" class="btn btn-secondary">목록</button>
+                        <button type="button" id="update" class="btn btn-primary" onClick="location.href='/v1/web/user/postupdate?id={{postId}}'">수정</button>
+                        <button type="button" id="delete" class="btn btn-danger" onClick="location.href='/v1/web/user/postdelete?id={{postId}}'">삭제</button>
+                        <button type="button" class="btn btn-secondary" onClick="location.href='/v1/web/user/index'">목록</button>
                     </div>
                     <!-- Comments section-->
                     <section class="mb-5">
