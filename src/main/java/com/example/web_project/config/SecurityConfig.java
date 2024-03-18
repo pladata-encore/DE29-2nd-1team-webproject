@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -23,20 +24,13 @@ import com.example.web_project.config.handler.LogoutAuthSuccessHandler;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(securedEnabled = true, prePostEnabled = true)
-public class SecurityConfig {
+public class SecurityConfig  {
     
-    
-    public void configure(WebSecurity web) throws Exception {
-    	web.ignoring()
-    		.requestMatchers(
-            		PathRequest
-                    	.toStaticResources()
-                        .atCommonLocations()
-            );
-        
-        configure(web);
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) ->  web.ignoring().requestMatchers( "/files/**");
+      
     }
-
 
 
     @Bean
