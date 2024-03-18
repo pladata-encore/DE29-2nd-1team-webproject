@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Blog Post - Start Bootstrap Template</title>
+        <title>관리자 게시글 페이지</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="/bootstrapPost/assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
@@ -57,7 +57,7 @@
                     <!-- 버튼 추가 -->
                     <div class="my-4 text-end">
                         <button type="button" id="update" class="btn btn-primary" onClick="location.href='/v1/web/admin/postupdate?id={{postId}}'">수정</button>
-                        <button type="button" id="delete" class="btn btn-danger" ><a href="/v1/web/admin/postdelete?id={{postId}}">삭제</a></button>
+                        <button type="button" id="delete" class="btn btn-danger" onClick="location.href='/v1/web/admin/postdelete?id={{postId}}'">삭제</button>
                         <button type="button" class="btn btn-secondary" onClick="location.href='/v1/web/admin/index'">목록</button>
                     </div>
                     <!-- Comments section-->

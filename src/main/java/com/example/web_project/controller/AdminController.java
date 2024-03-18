@@ -81,7 +81,7 @@ public class AdminController {
         log.info("[UserContoller][deleteUser] userId >>> "+id);
 
         userService.deleteUser(id);
-        ScriptUtils.alertAndMovePage(response, "계정삭제완료", "/v1/web/admin/setting");
+        ScriptUtils.alertAndMovePage(response, String.format("%s 계정을 삭제합니다.", id), "/v1/web/admin/setting");
 
         return "redirect:/v1/web/admin/setting";
     }
