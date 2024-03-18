@@ -116,7 +116,7 @@ public class PostController {
         PostDto dto = postService.getByPostId(longpostId);
         int intpostid = Integer.parseInt(postId);
         List<CommentEntity> dto2 = commentServce.commentList(intpostid);
-       
+        
         String Path = System.getProperty("user.dir") + "/src/main/resources/static/";
 
         File file = new File(Path + dto.getPostFilePath());
@@ -166,7 +166,7 @@ public class PostController {
         
         
 
-        return "/bootstrapPost/post";
+        return "/bootstrapMain/user/post";
     }
 
     @GetMapping("/post3")
