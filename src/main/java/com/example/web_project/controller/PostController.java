@@ -91,7 +91,7 @@ public class PostController {
         commentServce.writeComment(dto, (long)Math.random());
 
 
-        return String.format("redirect:post2?postId=%d",id);
+        return String.format("redirect:user/post2?postId=%d",id);
     }
 
 
