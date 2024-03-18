@@ -122,6 +122,8 @@ public class PostController {
         File file = new File(Path + dto.getPostFilePath());
 
         ResponseEntity<byte[]> result = null;
+        
+        
 
         try {
 			
@@ -139,6 +141,7 @@ public class PostController {
         System.out.println(file.toPath());
 
         model.addAttribute("f_path", result);
+        
 
 
         log.info("[PostController][view] PostViewNum >>> "+ dto.getPostViewNum());

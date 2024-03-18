@@ -1,10 +1,14 @@
 package com.example.web_project.config;
 
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -20,8 +24,15 @@ import com.example.web_project.config.handler.LogoutAuthSuccessHandler;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(securedEnabled = true, prePostEnabled = true)
-public class SecurityConfig {
+public class SecurityConfig  {
     
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) ->  web.ignoring().requestMatchers( "/files/**");
+      
+    }
+
+
     @Bean
     public BCryptPasswordEncoder eBCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
@@ -79,6 +90,9 @@ public class SecurityConfig {
         
         return http.build();
     }
+    
+
+
     //이미지 저장 경로 구현 중 
     // public void  addResourceHandlers(ResourceHandlerRegistry registry) {
     //     registry.addResourceHandler("/attach/images/**") // --1
