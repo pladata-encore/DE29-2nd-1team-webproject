@@ -94,7 +94,9 @@ public class PostServiceImpl implements PostService{
         // TODO Auto-generated method stub
         PostEntity post = postDao.findMostViewedPost();
         PostDto dto = new PostDto();
-        
+        if(dto.getPostId() == null){
+            return null;
+        }
         dto.setPostId(post.getPostId());
         dto.setPostTitle(post.getPostTitle());
         dto.setPostContent(post.getPostContent());
