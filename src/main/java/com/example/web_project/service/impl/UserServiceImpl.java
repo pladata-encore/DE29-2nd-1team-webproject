@@ -59,7 +59,9 @@ public class UserServiceImpl implements UserService{
         UserEntity entity = userDao.getUserByName(userId);
         UserDto dto = new UserDto();
         log.info("[UserServiceImpl][getUserByName] entity >>> " + entity);
-
+        if(entity == null){
+            return null;
+        }
         dto.setUserId(entity.getUserId());
         dto.setUserName(entity.getUserName());
         dto.setUserPw(entity.getUserPw());

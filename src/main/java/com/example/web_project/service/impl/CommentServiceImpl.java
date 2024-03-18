@@ -38,7 +38,7 @@ public class CommentServiceImpl implements CommentService{
     public void updateComment(CommentDto dto, Long commentId) {
         // TODO Auto-generated method stub
         CommentEntity entity = new CommentEntity();
-        entity.setCommentId(dto.getCommnetId());
+        entity.setCommentId(dto.getCommentId());
         entity.setCommentComment(dto.getCommentComment());
         entity.setCommentDate(dto.getCommentDate());
         entity.setCommentPostid(dto.getCommentPostid());
@@ -52,7 +52,7 @@ public class CommentServiceImpl implements CommentService{
         // TODO Auto-generated method stub
 
         CommentEntity entity = new CommentEntity();
-        entity.setCommentId(dto.getCommnetId());
+        entity.setCommentId(dto.getCommentId());
         entity.setCommentComment(dto.getCommentComment());
         entity.setCommentDate(dto.getCommentDate());
         entity.setCommentPostid(dto.getCommentPostid());

@@ -85,6 +85,9 @@
                         </div>
                     </div>
                     {{/mostViewed}}
+                    {{^mostViewed}}
+                    <h3>아직 작성된 게시글이 없습니다^^</h3>
+                    {{/mostViewed}}
                     <!-- 하단 게시글 Nested row for non-featured blog posts -->
                     <h3 class="display-5">Post</h3>
                     <div class="row">
@@ -102,6 +105,9 @@
                                 </div>
                             </div>
                         </div>
+                        {{/lt}}
+                        {{^lt}}
+                        <h3>글을 작성해주세요~~</h3>
                         {{/lt}}
                     </div>
                     

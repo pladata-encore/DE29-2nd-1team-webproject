@@ -57,7 +57,7 @@ public class PostController {
     private PostServiceImpl postService;
 
     @Autowired 
-    private CommentService commentServce;
+    private CommentService commentService;
     
 
     //     System.out.println(id);
@@ -84,13 +84,16 @@ public class PostController {
     // }
 
     @PostMapping("/comment")
-    public String insertPost(@Valid @ModelAttribute CommentDto dto ,@RequestParam long id) {
-        
+    public String insertPost(@Valid @ModelAttribute CommentDto dto ,@RequestParam long id, Authentication authentication) {
+            
+        UserDetails userDetails = (UserDetails)authentication.getPrincipal();
+        String userId = userDetails.getUsername();
+
         Date now = new Date();
         dto.setCommentDate(now);
         dto.setCommentPostid(id);
-        dto.setCommentUserid((long)Math.random());
-        commentServce.writeComment(dto, (long)Math.random());
+        dto.setCommentUserid(userId);
+        commentService.writeComment(dto, (long)Math.random());
 
 
         return String.format("redirect:user/post2?postId=%d",id);
@@ -115,7 +118,7 @@ public class PostController {
         Long longpostId = Long.parseLong(postId);
         PostDto dto = postService.getByPostId(longpostId);
         int intpostid = Integer.parseInt(postId);
-        List<CommentEntity> dto2 = commentServce.commentList(intpostid);
+        List<CommentEntity> dto2 = commentService.commentList(intpostid);
         
         String Path = System.getProperty("user.dir") + "/src/main/resources/static/";
 

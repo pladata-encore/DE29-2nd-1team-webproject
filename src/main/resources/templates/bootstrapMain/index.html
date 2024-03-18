@@ -78,12 +78,12 @@
                             <h2 class="card-title h4">[베스트 게시글]{{postTitle}}</h2>
                             <p class="card-text">작성자: {{postWriter}}</p>
                             <p class="card-viewNum">조회수: {{postViewNum}}</p>
-                            <a class="btn btn-primary" href="/v1/web/user/post2?postId={{postId}}">자세히 →</a>
+                            <a class="btn btn-primary" href="/v1/web/post2?postId={{postId}}">자세히 →</a>
                         </div>
                     </div>
                     {{/mostViewed}}
                     {{^mostViewed}}
-                    <p>없음</p>
+                    <h3>아직 작성된 게시글이 없습니다^^</h3>
                     {{/mostViewed}}
                     <!-- 하단 게시글 Nested row for non-featured blog posts -->
                     <h3 class="display-5">Post</h3>
@@ -102,6 +102,9 @@
                                 </div>
                             </div>
                         </div>
+                        {{/lt}}
+                        {{^lt}}
+                        <h3>글을 작성해주세요~~</h3>
                         {{/lt}}
                     </div>
                     
