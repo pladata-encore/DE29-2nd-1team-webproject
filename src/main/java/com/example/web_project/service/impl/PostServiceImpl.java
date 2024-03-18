@@ -10,8 +10,11 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.web_project.model.DAO.CommentDao;
 import com.example.web_project.model.DAO.PostDao;
+import com.example.web_project.model.DTO.CommentDto;
 import com.example.web_project.model.DTO.PostDto;
+import com.example.web_project.model.Entity.CommentEntity;
 import com.example.web_project.model.Entity.PostEntity;
 import com.example.web_project.service.PostService;
 
@@ -23,11 +26,16 @@ public class PostServiceImpl implements PostService{
     @Autowired
     private PostDao postDao;
 
+    @Autowired
+    private CommentDao commentDao;
+
     @Override
     public void deletePost(Long postId) {
         // TODO Auto-generated method stub
         postDao.deletePost(postId);
     }
+
+    
 
     @Override
     public Page<PostEntity> getAllPost(Pageable pageable) {
@@ -150,8 +158,8 @@ public class PostServiceImpl implements PostService{
         return check;
     }
 
-    
-    
 
+
+   
 
 }

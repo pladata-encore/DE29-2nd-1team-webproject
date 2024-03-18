@@ -4,6 +4,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.web_project.model.DAO.CommentDao;
+import com.example.web_project.model.DTO.CommentDto;
 import com.example.web_project.model.DTO.PostDto;
 import com.example.web_project.model.Entity.PostEntity;
 
@@ -23,6 +25,12 @@ public interface PostService {
     public void deletePost(Long postId);
 
     public void viewPost(PostDto dto);
+
+
+
+
+
+
 
     
 }
